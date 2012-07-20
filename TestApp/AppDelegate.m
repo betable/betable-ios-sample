@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
@@ -14,10 +15,42 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    betable = [[Betable alloc] initWithClientID:@"EOlWJmI20G8ksXzuHiDXJ6UFzkicYr1u"
+                                   clientSecret:@"NEWUN5cKMptwDWHimda2f7BO4SsagHFu"
+                                    redirectURI:@"betable+Cm0QnIXtvp6fzZOL3ymORq://authorize"];
+    
+    viewController = [[ViewController alloc]initWithBetable:betable];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [viewController.view setFrame:[[UIScreen mainScreen] bounds]];
+    [self.window addSubview:viewController.view];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
-							
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
+    for (NSString *param in [[url query] componentsSeparatedByString:@"&"]) {
+        NSArray *elts = [param componentsSeparatedByString:@"="];
+        if([elts count] < 2) continue;
+        [params setObject:[elts objectAtIndex:1] forKey:[elts objectAtIndex:0]];
+    }
+    [betable token:[params objectForKey:@"code"]
+        onComplete:[^(NSString* accessToken){
+            NSLog(@"accessToken: %@", accessToken);
+            if (accessToken) {
+                [viewController alertAuthorized];
+            } else {
+                [viewController alertAuthorizeFailed];
+            }
+        } autorelease]
+         onFailure:[^(NSURLResponse *response, NSString *responseBody, NSError *error){
+             NSLog(@"%@", error);
+         } autorelease]
+     ];
+    return YES;
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

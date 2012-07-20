@@ -6,9 +6,15 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <Betable/betable.h>
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class ViewController;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+    ViewController *viewController;
+    Betable *betable;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
