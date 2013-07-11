@@ -15,15 +15,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     betable = [[Betable alloc] initWithClientID:@"EOlWJmI20G8ksXzuHiDXJ6UFzkicYr1u"
                                    clientSecret:@"NEWUN5cKMptwDWHimda2f7BO4SsagHFu"
                                     redirectURI:@"betable+Cm0QnIXtvp6fzZOL3ymORq://authorize"];
     
     viewController = [[ViewController alloc]initWithBetable:betable];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [viewController.view setFrame:[[UIScreen mainScreen] bounds]];
-    [self.window addSubview:viewController.view];
+    [viewController.view setFrame:[[UIScreen mainScreen] bounds]];    
+    self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
 
     return YES;
@@ -40,9 +39,9 @@
         onComplete:[^(NSString* accessToken){
             NSLog(@"accessToken: %@", accessToken);
             if (accessToken) {
-                [viewController alertAuthorized];
+                [self performSelectorOnMainThread:@selector(alertAuthorized) withObject:viewController waitUntilDone:NO];
             } else {
-                [viewController alertAuthorizeFailed];
+                [self performSelectorOnMainThread:@selector(alertAuthorizeFailed) withObject:viewController waitUntilDone:NO];
             }
         } autorelease]
          onFailure:[^(NSURLResponse *response, NSString *responseBody, NSError *error){

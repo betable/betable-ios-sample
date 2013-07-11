@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38E6B5A41784CFE100574079 /* Betable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E6B5A31784CFE100574079 /* Betable.framework */; };
 		A51BDC4F15B7FE1400D500BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC4E15B7FE1400D500BD /* UIKit.framework */; };
 		A51BDC5115B7FE1400D500BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC5015B7FE1400D500BD /* Foundation.framework */; };
 		A51BDC5315B7FE1400D500BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC5215B7FE1400D500BD /* CoreGraphics.framework */; };
@@ -17,7 +18,6 @@
 		A51BDC7015B7FE1400D500BD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC6F15B7FE1400D500BD /* SenTestingKit.framework */; };
 		A51BDC7115B7FE1400D500BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC4E15B7FE1400D500BD /* UIKit.framework */; };
 		A51BDC7215B7FE1400D500BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC5015B7FE1400D500BD /* Foundation.framework */; };
-		A59FB2D615B9457900865CDC /* Betable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59FB2D515B9457900865CDC /* Betable.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		38BB71B9178246B500B24F50 /* Betable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Betable.framework; path = ../../Desktop/Betable.framework; sourceTree = "<group>"; };
+		38E6B5A31784CFE100574079 /* Betable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Betable.framework; sourceTree = "<group>"; };
 		A51BDC4A15B7FE1400D500BD /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51BDC4E15B7FE1400D500BD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A51BDC5015B7FE1400D500BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,7 +47,6 @@
 		A51BDC6715B7FE1400D500BD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A51BDC6E15B7FE1400D500BD /* TestAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51BDC6F15B7FE1400D500BD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		A59FB2D515B9457900865CDC /* Betable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Betable.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +57,7 @@
 				A51BDC4F15B7FE1400D500BD /* UIKit.framework in Frameworks */,
 				A51BDC5115B7FE1400D500BD /* Foundation.framework in Frameworks */,
 				A51BDC5315B7FE1400D500BD /* CoreGraphics.framework in Frameworks */,
-				A59FB2D615B9457900865CDC /* Betable.framework in Frameworks */,
+				38E6B5A41784CFE100574079 /* Betable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +77,7 @@
 		A51BDC3F15B7FE1400D500BD = {
 			isa = PBXGroup;
 			children = (
+				38BB71B9178246B500B24F50 /* Betable.framework */,
 				A51BDC5415B7FE1400D500BD /* TestApp */,
 				A51BDC4D15B7FE1400D500BD /* Frameworks */,
 				A51BDC4B15B7FE1400D500BD /* Products */,
@@ -94,7 +96,7 @@
 		A51BDC4D15B7FE1400D500BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A59FB2D515B9457900865CDC /* Betable.framework */,
+				38E6B5A31784CFE100574079 /* Betable.framework */,
 				A51BDC4E15B7FE1400D500BD /* UIKit.framework */,
 				A51BDC5015B7FE1400D500BD /* Foundation.framework */,
 				A51BDC5215B7FE1400D500BD /* CoreGraphics.framework */,
@@ -318,6 +320,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Desktop\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestApp/TestApp-Prefix.pch";
@@ -333,6 +336,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Desktop\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestApp/TestApp-Prefix.pch";
