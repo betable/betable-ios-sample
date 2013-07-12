@@ -22,22 +22,15 @@
     
     viewController = [[ViewController alloc]initWithBetable:betable];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [viewController.view setFrame:[[UIScreen mainScreen] bounds]];
-    [self.window addSubview:viewController.view];
+    [self.window setRootViewController:viewController];
     [self.window makeKeyAndVisible];
 
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    NSMutableDictionary *params = [[[NSMutableDictionary alloc] init] autorelease];
-    for (NSString *param in [[url query] componentsSeparatedByString:@"&"]) {
-        NSArray *elts = [param componentsSeparatedByString:@"="];
-        if([elts count] < 2) continue;
-        [params setObject:[elts objectAtIndex:1] forKey:[elts objectAtIndex:0]];
-    }
-    [betable token:[params objectForKey:@"code"]
-        onComplete:[^(NSString* accessToken){
+    [betable handleAuthorizeURL:url
+        onAuthorizationComplete:[^(NSString* accessToken){
             NSLog(@"accessToken: %@", accessToken);
             if (accessToken) {
                 [viewController alertAuthorized];

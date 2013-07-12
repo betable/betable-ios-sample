@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Betable/betable.h>
+#import <Betable/Betable.h>
 #import <UIKit/UIKit.h>
 
 @class ViewController;

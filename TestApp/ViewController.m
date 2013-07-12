@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <Betable/Betable.h>
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -29,7 +30,7 @@
     [newView setBackgroundColor:[UIColor whiteColor]];
     [[self view] addSubview:newView];
     
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 20)] autorelease];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 100, 20)] autorelease];
     label.text = @"Test App";
     label.font = [UIFont boldSystemFontOfSize:20];
     label.textColor = [UIColor blackColor];
@@ -38,7 +39,7 @@
     
     /* Setting up authorization button */
     authorizeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [authorizeButton setFrame:CGRectMake(10, 60, 300, 40)];
+    [authorizeButton setFrame:CGRectMake(10, 50, 300, 40)];
     [authorizeButton setTitle:@"Authorize" forState:UIControlStateNormal];
     [authorizeButton setTitle:@"Authorized" forState:UIControlStateDisabled];
     [authorizeButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
@@ -47,7 +48,7 @@
     
     /* Setting up bet button */
     UIButton *betButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [betButton setFrame:CGRectMake(10, 110, 300, 40)];
+    [betButton setFrame:CGRectMake(10, 100, 300, 40)];
     [betButton setTitle:@"Bet" forState:UIControlStateNormal];
     [[self view] addSubview:betButton];
     [betButton addTarget:self action:@selector(bet:)
@@ -55,7 +56,7 @@
     
     /* Setting up account lookup button */
     UIButton *accountButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [accountButton setFrame:CGRectMake(10, 160, 300, 40)];
+    [accountButton setFrame:CGRectMake(10, 150, 300, 40)];
     [accountButton setTitle:@"Get Account" forState:UIControlStateNormal];
     [[self view] addSubview:accountButton];
     [accountButton addTarget:self action:@selector(account:)
@@ -63,11 +64,19 @@
     
     /* Setting up wallet lookup button */
     UIButton *walletButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [walletButton setFrame:CGRectMake(10, 210, 300, 40)];
+    [walletButton setFrame:CGRectMake(10, 200, 300, 40)];
     [walletButton setTitle:@"Get Wallet" forState:UIControlStateNormal];
     [[self view] addSubview:walletButton];
     [walletButton addTarget:self action:@selector(wallet:)
             forControlEvents:(UIControlEvents)UIControlEventTouchDown];
+    
+    /* Setting up profile button */
+    UIButton *profileButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [profileButton setFrame:CGRectMake(10, 250, 300, 40)];
+    [profileButton setTitle:@"Profile" forState:UIControlStateNormal];
+    [[self view] addSubview:profileButton];
+    [profileButton addTarget:self action:@selector(profile:)
+           forControlEvents:(UIControlEvents)UIControlEventTouchDown];
     
     CGRect overlayFrame = self.view.frame;
     overlayView = [[UIView alloc] initWithFrame:overlayFrame];
@@ -92,7 +101,9 @@
 }
 - (void)authorize:(id)sender {
     [self.view addSubview:overlayView];
-    [betable authorize];
+    [betable authorizeInViewController:self onClose:^{
+        [overlayView removeFromSuperview];
+    }];
 }
 - (void)bet:(id)sender {
     NSArray *paylines = [NSArray arrayWithObject:
@@ -131,6 +142,10 @@
                          onFailure:^(NSURLResponse *response, NSString *responseBody, NSError *error){
                              NSLog(@"%@", responseBody);
                          }];
+}
+- (void)profile:(id)sender {
+    BetableWebViewController *profile = [[BetableWebViewController alloc] initWithURL:@"http://betable.com" onClose:nil];
+    [self presentModalViewController:profile animated:YES];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
