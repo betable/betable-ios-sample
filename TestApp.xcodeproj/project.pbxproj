@@ -17,6 +17,8 @@
 		A51BDC7015B7FE1400D500BD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC6F15B7FE1400D500BD /* SenTestingKit.framework */; };
 		A51BDC7115B7FE1400D500BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC4E15B7FE1400D500BD /* UIKit.framework */; };
 		A51BDC7215B7FE1400D500BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51BDC5015B7FE1400D500BD /* Foundation.framework */; };
+		A544A0461790899300B58046 /* Betable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A544A0441790899300B58046 /* Betable.bundle */; };
+		A544A0471790899300B58046 /* Betable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A544A0451790899300B58046 /* Betable.framework */; };
 		A5B6012C178F69DC00F162BF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B6012B178F69DC00F162BF /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		A51BDC6715B7FE1400D500BD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A51BDC6E15B7FE1400D500BD /* TestAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51BDC6F15B7FE1400D500BD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A544A0441790899300B58046 /* Betable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Betable.bundle; sourceTree = "<group>"; };
+		A544A0451790899300B58046 /* Betable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Betable.framework; sourceTree = "<group>"; };
 		A5B6012B178F69DC00F162BF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +60,7 @@
 				A51BDC4F15B7FE1400D500BD /* UIKit.framework in Frameworks */,
 				A51BDC5115B7FE1400D500BD /* Foundation.framework in Frameworks */,
 				A51BDC5315B7FE1400D500BD /* CoreGraphics.framework in Frameworks */,
+				A544A0471790899300B58046 /* Betable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,8 @@
 		A51BDC4D15B7FE1400D500BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A544A0441790899300B58046 /* Betable.bundle */,
+				A544A0451790899300B58046 /* Betable.framework */,
 				A51BDC4E15B7FE1400D500BD /* UIKit.framework */,
 				A51BDC5015B7FE1400D500BD /* Foundation.framework */,
 				A51BDC5215B7FE1400D500BD /* CoreGraphics.framework */,
@@ -197,6 +204,7 @@
 			files = (
 				A51BDC5915B7FE1400D500BD /* InfoPlist.strings in Resources */,
 				A5B6012C178F69DC00F162BF /* Default-568h@2x.png in Resources */,
+				A544A0461790899300B58046 /* Betable.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

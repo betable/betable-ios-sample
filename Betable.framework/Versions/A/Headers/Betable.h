@@ -37,6 +37,7 @@
     NSString *redirectURI;
     NSString *accessToken;
     NSOperationQueue *queue;
+    UIWebView *webView;
 }
 - (Betable*)initWithClientID:(NSString*)clientID clientSecret:(NSString*)clientSecret redirectURI:(NSString*)redirectURI;
 
@@ -59,6 +60,8 @@
 - (void)authorizeInViewController:(UIViewController*)viewController onClose:(BetableCancelHandler)onClose;
 
 
+- (void)authorizeInApp;
+
 // Once you have your access code from the application:handleOpenURL: of your
 // UIApplicationDelegate after betable redirects to your app uri you can pass
 // the uri into this method with your handlers for successfully or unsuccessfully
@@ -69,6 +72,14 @@
 // You will want to store this with the user so you can make future calls on
 // be half of said user.
 - (void)handleAuthorizeURL:(NSURL*)url onAuthorizationComplete:(BetableAccessTokenHandler)onComplete onFailure:(BetableFailureHandler)onFailure;
+
+// You can create an auth token for an unbacked bet (virtual currency).  Rather,
+// than calling authorize first and receiving a token back in
+// application:handleOpenURL: you will receive an unbacked-bet access token in
+// the onComplete callback.
+- (void)unbackedToken:(NSString*)clientUserID
+            onComplete:(BetableAccessTokenHandler)onComplete
+            onFailure:(BetableFailureHandler)onFailure;
 
 // You can create an auth token for an unbacked bet (virtual currency).  Rather,
 // than calling authorize first and receiving a token back in

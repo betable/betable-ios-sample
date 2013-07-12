@@ -15,7 +15,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     betable = [[Betable alloc] initWithClientID:@"EOlWJmI20G8ksXzuHiDXJ6UFzkicYr1u"
                                    clientSecret:@"NEWUN5cKMptwDWHimda2f7BO4SsagHFu"
                                     redirectURI:@"betable+Cm0QnIXtvp6fzZOL3ymORq://authorize"];
