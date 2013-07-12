@@ -96,11 +96,11 @@
            forControlEvents:(UIControlEvents)UIControlEventTouchDown];
     
     
-    CGRect overlayFrame = self.view.bounds;
+    CGRect overlayFrame = CGRectMake(0, 0, 480, 480);
     overlayView = [[UIView alloc] initWithFrame:overlayFrame];
     overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.8];
     UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0,0,40,40)] autorelease];
-    spinner.center = overlayView.center;
+    spinner.center = self.view.center;
     [overlayView addSubview:spinner];
     [spinner startAnimating];
 }
@@ -122,13 +122,10 @@
                                           otherButtonTitles:nil] autorelease];
     [alert show];
 }
-- (void)inAppAuth:(id)sender {
-    [betable authorizeInApp];
-}
 - (void)authorize:(id)sender {
     authUnbacked = NO;
     [self.view addSubview:overlayView];
-    [betable authorizeInViewController:self onClose:^{
+    [betable authorizeInViewController:self onCancel:^{
         [overlayView removeFromSuperview];
     }];
 }
@@ -207,19 +204,11 @@
                          }];
 }
 - (void)profile:(id)sender {
-    BetableWebViewController *profile = [[BetableWebViewController alloc] initWithURL:@"http://betable.com" onClose:nil];
+    BetableWebViewController *profile = [[BetableWebViewController alloc] initWithURL:@"http://betable.com" onCancel:nil];
     [self presentModalViewController:profile animated:YES];
 }
 - (void)viewDidUnload {
     [super viewDidUnload];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
 }
 
 @end
