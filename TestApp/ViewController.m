@@ -125,9 +125,24 @@
 - (void)authorize:(id)sender {
     authUnbacked = NO;
     [self.view addSubview:overlayView];
-    [betable authorizeInViewController:self onCancel:^{
+    BetableAccessTokenHandler authCompleteHandler = ^(NSString* accessToken){
+        NSLog(@"accessToken: %@", accessToken);
+        if (accessToken) {
+            [self alertAuthorized];
+        } else {
+            [self alertAuthorizeFailed];
+        }
+    };
+    BetableFailureHandler authFailureHandler = ^(NSURLResponse *response, NSString *responseBody, NSError *error){
+        NSLog(@"%@", error);
+    };
+    BetableCancelHandler authCancelHandler = ^{
         [overlayView removeFromSuperview];
-    }];
+    };
+    [betable authorizeInViewController:self
+               onAuthorizationComplete:authCompleteHandler
+                             onFailure:authFailureHandler
+                              onCancel:authCancelHandler];
 }
 - (void)unbackedAuthorize:(id)sender {
     authUnbacked = YES;

@@ -28,19 +28,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    [betable handleAuthorizeURL:url
-        onAuthorizationComplete:[^(NSString* accessToken){
-            NSLog(@"accessToken: %@", accessToken);
-            if (accessToken) {
-                [viewController alertAuthorized];
-            } else {
-                [viewController alertAuthorizeFailed];
-            }
-        } autorelease]
-         onFailure:[^(NSURLResponse *response, NSString *responseBody, NSError *error){
-             NSLog(@"%@", error);
-         } autorelease]
-     ];
+    [betable handleAuthorizeURL:url];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application
