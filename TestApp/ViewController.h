@@ -15,13 +15,12 @@
     UIButton *authorizeButton;
     UIView *overlayView;
     UIButton *unbackedAuthorizeButton;
-    UIButton *inAppAuthButton;
     BOOL authUnbacked;
 }
 - (ViewController*)initWithBetable:(Betable*)aBetable;
 - (void)authorize:(id)sender;
 - (void)unbackedAuthorize:(id)sender;
-- (void)inAppAuth:(id)sender;
+
 
 - (void)bet:(id)sender;
 - (void)account:(id)sender;

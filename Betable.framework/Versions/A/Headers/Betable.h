@@ -28,6 +28,15 @@
 
 #import <Betable/BetableWebViewController.h>
 #import <Betable/BetableHandlers.h>
+#import <Betable/BetableBatchRequest.h>
+
+@interface NSDictionary (BetableJSON)
+- (NSData*)JSONData;
+@end
+
+@interface NSString (BetableJSON)
+- (NSObject*)objectFromJSONString;
+@end
 
 @class BetableWebViewController;
 
@@ -95,6 +104,31 @@
         onComplete:(BetableCompletionHandler)onComplete
          onFailure:(BetableFailureHandler)onFailure;
 
+// This method is used to place a bet for the user associated with this Betable
+// object.
+//
+//      |gameID|: This is your gameID which is registered and can be checked at
+//          http://developers.betable.com
+//      |creditGameID|: This is the ID of the game that is being played with
+//          the credits.
+//      |data|: This is a dictionary that will converted to JSON and added
+//          request as the body. It contains all the important information about
+//          the bet being made. For documentation on the format of this
+//          dictionary see https://developers.betable.com/docs/api/reference/
+//      |onComplete|: This is a block that will be called if the server returns
+//          the request with a successful response code. It will be passed a
+//          dictionary that contains all of the JSON data returned from the
+//          betable server.
+//      |onFailure|: This is a block that will be called if the server returns
+//          with an error. It gets passed the NSURLResponse object, the string
+//          reresentation of the body, and the NSError that was raised.
+//          betable server.
+- (void)creditBetForGame:(NSString*)gameID
+              creditGame:(NSString*)creditGameID
+                withData:(NSDictionary*)data
+              onComplete:(BetableCompletionHandler)onComplete
+               onFailure:(BetableFailureHandler)onFailure;
+
 // This method is used to retrieve information about the account of the user
 // associated with this betable object.
 //
@@ -145,12 +179,46 @@
                 onComplete:(BetableCompletionHandler)onComplete
                  onFailure:(BetableFailureHandler)onFailure;
 
+// This method is used to place an unbacked-bet for the user associated with this Betable
+// object.
+//
+//      |gameID|: This is your gameID which is registered and can be checked at
+//          http://developers.betable.com
+//      |creditGameID|: This is the ID of the game that is being played with
+//          the credits.
+//      |data|: This is a dictionary that will converted to JSON and added
+//          request as the body. It contains all the important information about
+//          the bet being made. For documentation on the format of this
+//          dictionary see https://developers.betable.com/docs/api/reference/
+//      |onComplete|: This is a block that will be called if the server returns
+//          the request with a successful response code. It will be passed a
+//          dictionary that contains all of the JSON data returned from the
+//          betable server.
+//      |onFailure|: This is a block that will be called if the server returns
+//          with an error. It gets passed the NSURLResponse object, the string
+//          reresentation of the body, and the NSError that was raised.
+//          betable server.
+- (void)unbackedCreditBetForGame:(NSString*)gameID
+                      creditGame:(NSString*)creditGameID
+                        withData:(NSDictionary*)data
+                      onComplete:(BetableCompletionHandler)onComplete
+                       onFailure:(BetableFailureHandler)onFailure;
+
+// raises "User is not authroized" exception if there doesn't exist an access token
+- (void)checkAccessToken;
+
+// This method is used to clear a user out as the authroized user on a Betable Object. It
+// also manages the state of the betable object and it's web views.     
+- (void)logout;
+
 // All of the betable server endpoint urls.
 + (NSString*)getTokenURL;
 + (NSString*)getBetURL:(NSString*)gameID;
 + (NSString*)getWalletURL;
 + (NSString*)getAccountURL;
 + (NSString*)getUnbackedBetURL:(NSString*)gameID;
++ (NSString*) getBetPath:(NSString*)gameID;
++ (NSString*) getUnbackedBetPath:(NSString*)gameID;
 
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) NSString *clientSecret;
